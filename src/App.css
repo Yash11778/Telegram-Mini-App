@@ -1,0 +1,14 @@
+body{
+  background-image: linear-gradient(rgb(79, 214, 251),rgb(80, 29, 246),rgb(254, 110, 192));
+  color: #fff;
+}
+
+.cards__container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.heading{
+  text-align: center;
+}
