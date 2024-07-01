@@ -3,7 +3,7 @@ import "./App.css";
 import Card from "./Components/Card/Card";
 import Cart from "./Components/Cart/Cart";
 const { getData } = require("./db/db");
-const foods = getData();
+const Gadgets = getData();
 
 const tele = window.Telegram.WebApp;
 
@@ -14,27 +14,27 @@ function App() {
     tele.ready();
   });
 
-  const onAdd = (food) => {
-    const exist = cartItems.find((x) => x.id === food.id);
+  const onAdd = (Gadget) => {
+    const exist = cartItems.find((x) => x.id === Gadget.id);
     if (exist) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === food.id ? { ...exist, quantity: exist.quantity + 1 } : x
+          x.id === Gadget.id ? { ...exist, quantity: exist.quantity + 1 } : x
         )
       );
     } else {
-      setCartItems([...cartItems, { ...food, quantity: 1 }]);
+      setCartItems([...cartItems, { ...Gadget, quantity: 1 }]);
     }
   };
 
-  const onRemove = (food) => {
-    const exist = cartItems.find((x) => x.id === food.id);
+  const onRemove = (Gadget) => {
+    const exist = cartItems.find((x) => x.id === Gadget.id);
     if (exist.quantity === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== food.id));
+      setCartItems(cartItems.filter((x) => x.id !== Gadget.id));
     } else {
       setCartItems(
         cartItems.map((x) =>
-          x.id === food.id ? { ...exist, quantity: exist.quantity - 1 } : x
+          x.id === Gadget.id ? { ...exist, quantity: exist.quantity - 1 } : x
         )
       );
     }
@@ -50,9 +50,9 @@ function App() {
       <h1 className="heading">Electronic Gadgets Online Shopping</h1>
       <Cart cartItems={cartItems} onCheckout={onCheckout}/>
       <div className="cards__container">
-        {foods.map((food) => {
+        {Gadgets.map((Gadget) => {
           return (
-            <Card food={food} key={food.id} onAdd={onAdd} onRemove={onRemove} />
+            <Card Gadget={Gadget} key={Gadget.id} onAdd={onAdd} onRemove={onRemove} />
           );
         })}
       </div>
